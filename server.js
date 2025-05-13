@@ -31,6 +31,7 @@ mongoose
 
 // Routes
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/blogs", require("./routes/blogs"));
 app.use("/api/comments", require("./routes/comments"));
 app.use("/api/ai", require("./routes/ai"));

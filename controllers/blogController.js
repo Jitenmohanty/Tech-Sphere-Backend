@@ -111,6 +111,7 @@ exports.createBlog = async (req, res) => {
       try {
         featuredImageUrl = await uploadImage(req.file.buffer, req.file.mimetype, 'techsphere/featured-images');
         console.log('Image uploaded successfully to:', featuredImageUrl);
+        featuredImageUrl = featuredImageUrl.secure_url
       } catch (uploadErr) {
         console.error('Error uploading image:', uploadErr);
         // Continue without image if upload fails

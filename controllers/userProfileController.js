@@ -52,17 +52,27 @@ exports.updateUserProfile = async (req, res) => {
   }
 
   try {
-    const { username, bio } = req.body;
-    const socialLinks = JSON.parse(req.body.socialLinks || '{}');
+    const { username, bio, socialLinks } = req.body;
     
+    // Handle socialLinks whether it comes as string or object
+    let socialLinksData;
+    try {
+      socialLinksData = typeof socialLinks === 'string' 
+        ? JSON.parse(socialLinks) 
+        : socialLinks || {};
+    } catch (parseError) {
+      console.error('Error parsing socialLinks:', parseError);
+      socialLinksData = {};
+    }
+
     const updateData = { 
       username, 
       bio,
       socialLinks: {
-        twitter: socialLinks.twitter || '',
-        github: socialLinks.github || '',
-        linkedin: socialLinks.linkedin || '',
-        website: socialLinks.website || ''
+        twitter: socialLinksData.twitter || '',
+        github: socialLinksData.github || '',
+        linkedin: socialLinksData.linkedin || '',
+        website: socialLinksData.website || ''
       }
     };
 

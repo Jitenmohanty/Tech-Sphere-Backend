@@ -169,6 +169,8 @@ exports.updateBlog = async (req, res) => {
   try {
     const { title, content, tags, customTags, status } = req.body;
 
+    // console.log(req.body, "req.body in updateBlog");
+
     let blog = await Blog.findById(req.params.id);
     if (!blog) return res.status(404).json({ msg: 'Blog not found' });
     if (blog.author.toString() !== req.user.id) return res.status(401).json({ msg: 'Not authorized' });
@@ -188,7 +190,7 @@ exports.updateBlog = async (req, res) => {
       }
     }
 
-    const excerpt = content.substring(0, 300) + (content.length > 300 ? '...' : '');
+    const excerpt = content.substring(0, 297) + (content.length > 297 ? '...' : '');
 
     blog.title = title;
     blog.content = content;

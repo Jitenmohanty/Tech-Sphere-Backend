@@ -147,6 +147,47 @@ App runs on [http://localhost:5173](http://localhost:5173)
       +---------------------------------------------+
 ```
 
+## 🛣️ API Routes Overview
+
+Below is a summary of the main backend API routes:
+
+### AI Assistant
+| Method | Endpoint            | Description                          | Auth Required |
+|--------|---------------------|--------------------------------------|:------------:|
+| POST   | `/api/ai/explain`   | Get AI explanation for selected text | ✅           |
+
+### Blogs
+| Method | Endpoint                        | Description                        | Auth Required |
+|--------|---------------------------------|------------------------------------|:------------:|
+| GET    | `/api/blogs`                    | Get all blogs                      |              |
+| GET    | `/api/blogs/:id`                | Get blog by ID                     |              |
+| GET    | `/api/blogs/user/:userId`       | Get blogs by user                  |              |
+| POST   | `/api/blogs`                    | Create a new blog                  | ✅           |
+| PUT    | `/api/blogs/:id`                | Update a blog                      | ✅           |
+| DELETE | `/api/blogs/:id`                | Delete a blog                      | ✅           |
+| PUT    | `/api/blogs/:id/like`           | Like/unlike a blog                 | ✅           |
+
+### Comments
+| Method | Endpoint                              | Description                        | Auth Required |
+|--------|---------------------------------------|------------------------------------|:------------:|
+| POST   | `/api/comments`                       | Create a comment                   | ✅           |
+| GET    | `/api/comments/blog/:blogId`          | Get all comments for a blog        |              |
+| PUT    | `/api/comments/:id`                   | Update a comment                   | ✅           |
+| DELETE | `/api/comments/:id`                   | Delete a comment                   | ✅           |
+| GET    | `/api/comments/user/:userId`          | Get all comments by a user         |              |
+
+### User Profiles
+| Method | Endpoint                                 | Description                        | Auth Required |
+|--------|------------------------------------------|------------------------------------|:------------:|
+| GET    | `/api/user/:userId`                      | Get user profile                   |              |
+| GET    | `/api/user/:userId/blogs`                | Get user's blogs                   |              |
+| GET    | `/api/user/profile/me`                   | Get current user's profile         | ✅           |
+| PUT    | `/api/user/profile`                      | Update current user's profile      | ✅           |
+
+> **Note:** Most protected routes require a valid JWT token in cookies.
+
+---
+
 ---
 
 ## 📸 Screenshots

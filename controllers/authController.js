@@ -192,8 +192,15 @@ exports.googleAuth = async (req, res) => {
 
 // Logout user
 exports.logout = (req, res) => {
-  res.clearCookie('token').json({ success: true });
+  res.clearCookie('token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    path: '/',            // <- important (default is current route /api/auth)
+  });
+
+  return res.json({ success: true, message: 'Logged out successfully' });
 };
+
 
 // Get current user
 exports.getUser = async (req, res) => {
